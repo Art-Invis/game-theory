@@ -53,13 +53,11 @@ def brown_robinson(matrix, num_iterations=10, plot=False):
         print("Наближена ціна гри:", round(approx_values[-1], 3))
 
     
-    # Побудова детальнішого графіка збіжності
     if plot:
         iterations = np.arange(1, num_iterations + 1)
 
         fig, ax = plt.subplots(figsize=(12, 7))
 
-        # Верхня та нижня оцінки ціни гри
         ax.plot(
             iterations, upper_bounds,
             color='red', linewidth=2,
@@ -96,8 +94,7 @@ def brown_robinson(matrix, num_iterations=10, plot=False):
                   f'{approx_values[-1]:.3f}'
         )
 
-        # Підпис наближеної ціни біля кожної точки
-        # Для довгих запусків залишаємо підписи лише на окремих кроках
+        
         if num_iterations <= 20:
             for i, value in enumerate(approx_values):
                 ax.annotate(
@@ -110,7 +107,6 @@ def brown_robinson(matrix, num_iterations=10, plot=False):
                     color='darkgreen'
                 )
 
-        # Заголовок і підписи осей
         ax.set_title(
             'Збіжність методу Брауна—Робінсон\n'
             f'Кількість ітерацій: {num_iterations}',
@@ -119,11 +115,9 @@ def brown_robinson(matrix, num_iterations=10, plot=False):
         ax.set_xlabel('Номер ітерації N', fontsize=12)
         ax.set_ylabel('Оцінка ціни гри', fontsize=12)
 
-        # Для 10 ітерацій показуємо кожен крок на осі X
         if num_iterations <= 20:
             ax.set_xticks(iterations)
 
-        # Сітка та оформлення
         ax.grid(True, which='major', linestyle=':', alpha=0.65)
         ax.axhline(0, color='black', linewidth=0.8, alpha=0.5)
 
@@ -134,7 +128,6 @@ def brown_robinson(matrix, num_iterations=10, plot=False):
             framealpha=0.95
         )
 
-        # Автоматично підбираємо межі з невеликим відступом
         ax.margins(x=0.06, y=0.18)
 
         fig.tight_layout()
@@ -151,10 +144,8 @@ A = [
     [3, -3,  2,  5]
 ]
 
-# Виконання 10 ітерацій з виведенням результатів
 brown_robinson(A, num_iterations=10, plot=False)
 
-# Графік для 10 ітерацій згідно із завданням
 brown_robinson(A, num_iterations=10, plot=True)
 
 
